@@ -45,13 +45,12 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // Допоміжний фільтр: просто прочитати атрибут з токеном, щоб він потрапляв у cookie кожного разу
     static class CsrfCookieTouchFilter extends OncePerRequestFilter {
         @Override
         protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
                 throws ServletException, IOException {
             CsrfToken token = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-            // нічого не робимо — саме звернення гарантує ініціалізацію
+          
             filterChain.doFilter(request, response);
         }
     }
