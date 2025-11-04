@@ -16,8 +16,7 @@ public class CsrfController {
 
     @GetMapping("/csrf")
     public CsrfToken csrf(CsrfToken token) {
-        // доступ до параметра token змушує Spring створити токен
-        // і покласти його в cookie XSRF-TOKEN (бо в SecurityConfig — CookieCsrfTokenRepository)
+       
         return token; // заодно поверне JSON з полем "token" — зручно для Postman
     }
 }
