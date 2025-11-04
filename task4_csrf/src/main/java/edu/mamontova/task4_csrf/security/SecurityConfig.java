@@ -28,7 +28,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // Класична поведінка: читаємо токен із запиту під атрибутом "_csrf"
+   
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
         requestHandler.setCsrfRequestAttributeName("_csrf");
 
@@ -39,7 +39,6 @@ public class SecurityConfig {
                         .csrfTokenRequestHandler(requestHandler)
                 )
                 .httpBasic(Customizer.withDefaults())
-                // фільтр, який "торкається" токена, щоб він гарантовано згенерувався і поклався в cookie
                 .addFilterAfter(new CsrfCookieTouchFilter(), org.springframework.security.web.authentication.www.BasicAuthenticationFilter.class);
 
         return http.build();
